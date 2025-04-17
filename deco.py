@@ -17,13 +17,13 @@ def track(limit: int = 3):
         def wrapper(*args, **kw):
             global count
             if count < limit:
-                logging.info(f"About to call {func.__name__}")
+                logging.info(f"{func.__name__} has called")
             count += 1
-            t1: float = time.perf_counter()
+            # t1: float = time.perf_counter()
             res = func(*args, **kw)
-            t2: float = time.perf_counter()
-            if count < limit:
-                logging.info(f"{func.__name__} took {t2 - t1} seconds")
+            # t2: float = time.perf_counter()
+            # if count < limit:
+            #     logging.info(f"{func.__name__} took {t2 - t1} seconds")
             return res
 
         return wrapper
@@ -31,7 +31,7 @@ def track(limit: int = 3):
     return decorate
 
 
-@track(3)
+@track(5)
 def factorial(n: int) -> int:
     if n < 2:
         return n
